@@ -50,6 +50,11 @@ NUMBER_GUESS() {
     # update table with new games played
 
     # if first game, add best game
+    if [[ -z $BEST_GAME ]]
+    then
+      INSERT_UPDATED_BEST=$($PSQL "UPDATE users SET best_game = $TRIES WHERE username = '$USERNAME'")
+    fi
+
 
     # compare tries to best game/update if needed
 
