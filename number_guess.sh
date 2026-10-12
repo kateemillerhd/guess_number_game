@@ -39,6 +39,22 @@ NUMBER_GUESS() {
     read GUESS
   fi
 
+   # if they guess the secret number 
+  if [[ $GUESS = $NUMBER ]]
+  then
+    TRIES=$((TRIES + 1))
+    echo -e "You guessed it in $TRIES tries. The secret number was $NUMBER. Nice job!"
+    
+    # add game to games played
+  
+    # update table with new games played
+
+    # if first game, add best game
+
+    # compare tries to best game/update if needed
+
+  
+  fi
 
 }
 
