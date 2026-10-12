@@ -22,6 +22,24 @@ NUMBER_GUESS() {
     echo -e "That is not an integer, guess again:"
     read GUESS
   fi
+
+  # if guess is lower than number
+  if [[ $GUESS -lt $NUMBER ]]
+  then
+    TRIES=$((TRIES + 1))
+    echo -e "It's higher than that, guess again:"
+    read GUESS
+  fi
+
+  # if guess is higher than number
+  if [[ $GUESS -gt $NUMBER ]]
+  then
+    TRIES=$((TRIES + 1))
+    echo -e "It's lower than that, guess again:"
+    read GUESS
+  fi
+
+
 }
 
 # get username
