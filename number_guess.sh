@@ -46,8 +46,10 @@ NUMBER_GUESS() {
     echo -e "You guessed it in $TRIES tries. The secret number was $NUMBER. Nice job!"
     
     # add game to games played
-  
+    UPDATE_GAMES_PLAYED=$((GAMES_PLAYED + 1))
+
     # update table with new games played
+    INSERT_UPDATED_GAMES=$($PSQL "UPDATE users SET games_played = $UPDATE_GAMES_PLAYED WHERE username = '$USERNAME'")
 
     # if first game, add best game
     if [[ -z $BEST_GAME ]]
@@ -57,6 +59,10 @@ NUMBER_GUESS() {
 
 
     # compare tries to best game/update if needed
+    if [[ $TRIES -lt $BEST_GAME ]]
+    then
+      INSERT_UPDATED_BEST=$($PSQL "UPDATE users SET best_game = $TRIES WHERE username = '$USERNAME'")
+    fi
 
   
   fi
